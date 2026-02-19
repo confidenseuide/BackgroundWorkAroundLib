@@ -121,12 +121,12 @@ public class MainActivity extends Activity {
             "When profile created, the app starts AUTOCONFIGURATION TIMER:\n" +
             "1. App starts service and enables receiver for screen off / reboot listen.\n" +
             "2. App adds \"safest\" system browser to profile (with the fewest excessive permissions).\n" +
-            "3. App disables screenshots in profile (safety), allows apps install and accounts management (free use).\n" +
+            "3. App disables screenshots in profile (for safety), allows apps install and accounts management (for free use).\n" +
             "4. App selects \"safest\" system keyboard (with the fewest excessive permissions) and freezes others.\n"+
 			"5. App tries to disable backup (if it can) and disallow mount physical media, disallow usb data and debugging features (to protect profile from physical exploits)\n"+
 		    "6. When screen turns off, profile will be frozen and profie apps hidden (except this app)\n"+
-			"7. To unhide apps just click to \"ProtectedWorkProfile\" shortcut, then \"ShowApps&SetUp\" and wait for the timer.\n"+
-			"8. App requests to set safe password type and minimal length (14), disables trust agents and biometrics.\n"+
+			"7. To unhide apps just click to \"ProtectedWorkProfile\" shortcut, then \"ShowApps&SetUp\" and wait for this timer (yes, again).\n"+
+			"8. App requests to set safe password type and minimal length (14), disables trust agents and biometrics unlock (for safety).\n"+
 			"9. App asks you to set password for profile to protect data (By the way, it is also recommended to have password in your main phone too to make the work profile harder to spot and disable).\n\n"+
 			"Don't use USB data connection, Type-C headphones, don't charge phone from PC and other phones if you don't want destroy work profile.\nIf you want to use USB for data transfer or debugging (etc.) without destroying profile, just click \"pause work apps\". In other cases, USB protection must be enabled and profile must be enabled. After creating profile please remove work profile button from quick settings bar so that protection cannot be disabled on lock screen. Don't pause work apps without reason. When deleting profile, system may display notification. ​If you want that others can't see it, disable notifications on lock screen.\n\n"+
 			"Note: App uses reflection in code and tries to modify appOps associated with regulation of autostart in some OEMs for more stable work of declared features under conditions of aggressive battery optimization.\n");
