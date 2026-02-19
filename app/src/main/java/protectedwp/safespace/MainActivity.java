@@ -201,8 +201,7 @@ public class MainActivity extends Activity {
 					String pkg = getPackageName();
 					java.lang.reflect.Method setMode = ops.getClass().getMethod("setMode", int.class, int.class, String.class, int.class);
 					/*
-					Fix for Xiaomi devices: allows Boot receivers and background start
-					to ensure wipe profile data on phone reboot works as expected. 
+					Fix for Xiaomi devices: allows Boot receivers and background start.
 					*/
 					for (int code = 10008; code <= 10009; code++) {
 						try {
@@ -224,12 +223,6 @@ public class MainActivity extends Activity {
         
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 int seconds = 10;
-				/*
-				Why do we use a timer to setup?: 
-				This app creates a temporary work profile that is deleted when the screen turns off. 
-				The user can delete and recreate it multiple times in some situations. 
-				Auto-configuration allows doing it fast. 
-				*/
 				
                 public void run() {
                     if (seconds > 0) {            
@@ -256,7 +249,7 @@ public class MainActivity extends Activity {
 							    dpm.clearUserRestriction(new ComponentName(MainActivity.this, MyDeviceAdminReceiver.class), UserManager.DISALLOW_APPS_CONTROL);
 							    try {if (Build.VERSION.SDK_INT >= 30) {
 									dpm.setUserControlDisabledPackages(admin, java.util.Collections.singletonList(getPackageName()));
-									// App is added to userControlDisabled packages. This will not apply to real user control ⸻ as a profile owner the app can't be stopped by user click in settings anyway. This option is important for the system. On some aggressive firmwares, the system simulates a user stop signal to terminate background apps. Direct signal not blocked like button in settings. But UserControlDisabled packages may not receive this signal. We must work constantly for the critical function of wiping data when the screen is off or the phone reboots.
+									// App is added to userControlDisabled packages. This will not apply to real user control ⸻ as a profile owner the app can't be stopped by user click in settings anyway. This option is important for the system. On some aggressive firmwares, the system simulates a user stop signal to terminate background apps. Direct signal not blocked like button in settings. But UserControlDisabled packages may not receive this signals.
 								}} catch (Throwable t) {}
 							    try {
 								    java.lang.reflect.Method method = dpm.getClass().getMethod("setAdminExemptFromBackgroundRestrictedOperations", ComponentName.class, boolean.class);
