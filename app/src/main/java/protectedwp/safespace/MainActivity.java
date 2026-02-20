@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
             "This app creates work profile that hide work apps and that will be frozen on screen off and that will be destroyed when any USB connection is detected, except for simple charging from ordinary power brick. This includes charging or connections to PC, other phones, Type-C headphones, and other specialized devices. This can help protect against USB-based hacker attacks.\n\n" +
             "Just click start -> next -> next ->... to create profile.\n\n" +
             "When profile created, the app starts AUTOCONFIGURATION TIMER:\n" +
-            "1. App starts service and enables receiver for screen off / reboot listen.\n" +
+            "1. App starts service and enables receiver for screen off / reboot / USB listen.\n" +
             "2. App adds \"safest\" system browser to profile (with the fewest excessive permissions).\n" +
             "3. App disables screenshots in profile (for safety), allows apps install and accounts management (for free use).\n" +
             "4. App selects \"safest\" system keyboard (with the fewest excessive permissions) and freezes others.\n"+
