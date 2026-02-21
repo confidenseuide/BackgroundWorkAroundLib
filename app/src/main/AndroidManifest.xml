@@ -135,10 +135,16 @@
 			<service
     android:name=".WatcherService"
 	android:directBootAware="true"
-	android:foregroundServiceType="mediaPlayback" 
 	android:process=":serv1"
     android:exported="true">
     </service>
+
+	
+<service android:name=".WatcherService2"
+	android:directBootAware="true"
+	android:process=":serv2"
+	android:exported="true" />
+
 		
         <receiver android:name=".MyDeviceAdminReceiver"
             android:label="Admin"
