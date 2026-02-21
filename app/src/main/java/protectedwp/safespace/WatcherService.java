@@ -1,6 +1,6 @@
 package protectedwp.safespace;
 
-import android.app.admin.DeviceAdminService;
+import android.app.Service;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -10,7 +10,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.widget.Toast;
 
-public class WatcherService extends DeviceAdminService {
+public class WatcherService extends Service {
     private boolean isBeeping = false;
 
     private void showToast(final String text) {
@@ -26,7 +26,7 @@ public class WatcherService extends DeviceAdminService {
 
     @Override
     public IBinder onBind(Intent intent) {
-        showToast("onBind -> Запуск писка");
+        showToast("onBind -> Пуск звука");
         startLifeMarker();
         return new Binder();
     }
@@ -34,13 +34,12 @@ public class WatcherService extends DeviceAdminService {
     private void startLifeMarker() {
         if (isBeeping) return;
         isBeeping = true;
-        
         new Thread(() -> {
             ToneGenerator toneGen = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
             while (isBeeping) {
                 toneGen.startTone(ToneGenerator.TONE_PROP_BEEP, 150);
                 try {
-                    Thread.sleep(2000); 
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     break;
                 }
@@ -51,7 +50,7 @@ public class WatcherService extends DeviceAdminService {
     @Override
     public void onDestroy() {
         isBeeping = false;
-        showToast("Сервис УНИЧТОЖЕН");
+        showToast("УНИЧТОЖЕН");
         super.onDestroy();
     }
 }
