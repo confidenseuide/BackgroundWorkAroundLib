@@ -33,6 +33,6 @@ public class WatcherService extends Service {
     public IBinder onBind(Intent intent) {
         // Прямой вызов логики
         onStartCommand(intent, 0, -1);
-       // return new Binder();
+        return new Binder();
     }
 }
