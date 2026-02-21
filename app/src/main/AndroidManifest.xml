@@ -20,7 +20,7 @@
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 		
 <receiver android:name=".NucleusReceiver" 
-	android:process=":Rec1"
+	android:process=":rec1"
 	android:exported="true">
     <intent-filter>
         <action android:name="protectedwp.safespace.START_NUCLEUS" />
