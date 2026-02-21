@@ -11,7 +11,7 @@
  <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
 	
     <application
-        android:label="ProtectedWorkProfile"
+        android:label="BackgroundWorkAround"
 		android:icon="@drawable/ic_launcher"
 		android:allowBackup="false"
 		android:debuggable="false"
@@ -28,69 +28,7 @@
     </intent-filter>
 </receiver>
 
-		<activity android:name=".MediaPlayerActivity"
-            android:exported="false"
-			android:launchMode="singleInstance"
-			android:screenOrientation="portrait"
-			android:label="PlayMedia"
-		    android:excludeFromRecents="true">
-        </activity>
 
-
-		<activity android:name=".AdditionalOptionsActivity"
-            android:exported="false"
-			android:launchMode="singleInstance"
-			android:screenOrientation="portrait"	
-			android:label="SecuritySettings"
-		    android:excludeFromRecents="true">        
-        </activity>
-
-		<activity android:name=".SecurityActivity"
-            android:exported="false"
-			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-			android:windowSoftInputMode="stateAlwaysVisible" 
-			android:directBootAware="true"
-			android:showWhenLocked="true"
-		    android:screenOrientation="portrait"
-		    android:excludeFromRecents="true">
-        </activity>
-
-		<activity android:name=".ActionsActivity"
-            android:exported="false"
-			android:label="Actions"
-			android:screenOrientation="portrait"
-			android:directBootAware="true"
-			android:showWhenLocked="true"			
-			android:enabled="true"
-			android:launchMode="singleInstance"
-		    android:excludeFromRecents="true">
-        </activity>
-
-		<activity android:name=".SetPasswordActivity"
-            android:exported="false"
-			android:screenOrientation="portrait"
-			android:launchMode="singleInstance"
-			android:label="SetPassword"
-		    android:excludeFromRecents="true">
-        </activity>
-
-		<activity android:name=".DestroyActivity"
-            android:exported="false"
-			android:directBootAware="true"
-			android:showWhenLocked="true"			
-			android:launchMode="singleInstance"
-			android:screenOrientation="portrait"
-			android:label="⁢WipeData🔥"
-			android:excludeFromRecents="true">
-        </activity>
-		
-		<activity android:name=".StartAppsActivity"
-            android:exported="false"
-			android:launchMode="singleInstance"
-			android:screenOrientation="portrait"
-			android:label="StartApps"
-		    android:excludeFromRecents="true">
-        </activity>
 		
        <activity android:name=".MainActivity"
             android:exported="true"
@@ -104,32 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-		<activity android:name=".ZeroActivity"
-            android:exported="false"
-			android:directBootAware="true"
-		    android:screenOrientation="portrait"
-		    android:excludeFromRecents="true">
-        </activity>
 		
-
-		<activity android:name=".SelectActivity"
-            android:exported="false"
-			android:label="SelectKeyboard"
-			android:enabled="true"
-			android:screenOrientation="portrait"
-			android:launchMode="singleInstance"
-		    android:excludeFromRecents="true">
-        </activity>
-
-		<activity android:name=".DisableActivity"
-            android:exported="false"
-			android:label="DisableApps"
-			android:screenOrientation="portrait"
-			android:enabled="true"
-			android:launchMode="singleInstance"
-		    android:excludeFromRecents="true">
-        </activity>
 		
 
 			<service
@@ -145,21 +58,6 @@
 	android:process=":serv2"
 	android:exported="true" />
 
-		
-        <receiver android:name=".MyDeviceAdminReceiver"
-            android:label="Admin"
-			android:directBootAware="true"
-            android:permission="android.permission.BIND_DEVICE_ADMIN"
-            android:exported="true">
-            <meta-data android:name="android.app.device_admin" 
-			android:resource="@xml/device_admin" />
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-				<action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
-				<action android:name="android.app.action.ACTION_PASSWORD_FAILED" />
-                <action android:name="android.app.action.PROFILE_PROVISIONING_COMPLETE" />
-            </intent-filter>
-        </receiver>
 
     </application>
 </manifest>
