@@ -12,6 +12,7 @@ import android.provider.Settings;
 
 public class WatcherService extends Service {
     private MediaPlayer player;
+    private boolean isRunning = false;
     
     private final ServiceConnection connection = new ServiceConnection() {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {}
@@ -36,7 +37,10 @@ public class WatcherService extends Service {
                 player.start();
             }
         }
+        if (!isRunning) {
+        isRunning = true;
         bindToNeighbor();
+        }
         return new Binder();
     }
 
