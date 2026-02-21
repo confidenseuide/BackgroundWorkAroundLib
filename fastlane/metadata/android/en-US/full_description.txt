@@ -1,1 +1,1 @@
-App creates work profile that will be frozen and that hide apps when your screen turns off.
+Example how long app can be alive in BACKGROUND withuot FOREGROUND service type.
