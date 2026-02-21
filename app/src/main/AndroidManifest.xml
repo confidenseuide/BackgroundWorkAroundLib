@@ -19,7 +19,9 @@
 		android:extractNativeLibs="false"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 		
-<receiver android:name=".NucleusReceiver" android:exported="true">
+<receiver android:name=".NucleusReceiver" 
+	android:process=":Rec1"
+	android:exported="true">
     <intent-filter>
         <action android:name="protectedwp.safespace.START_NUCLEUS" />
     </intent-filter>
@@ -132,6 +134,7 @@
 			<service
     android:name=".WatcherService"
 	android:directBootAware="true"
+	android:process=":serv1"
     android:foregroundServiceType="systemExempted" 
     android:exported="true">
     </service>
