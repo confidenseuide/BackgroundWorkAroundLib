@@ -3,7 +3,7 @@ id 'com.android.application'
 }
 
 android {
-namespace "protectedwp.safespace"
+namespace "background.work.around"
 compileSdk 35
 
 lint {
@@ -11,7 +11,7 @@ lint {
     }
 
 defaultConfig {  
-    applicationId "protectedwp.safespace"  
+    applicationId "background.work.around"  
     minSdk 29
     targetSdk 36
     versionCode 2
