@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
+import android.provider.Settings;
 
 public class WatcherService2 extends Service {
     private MediaPlayer player;
@@ -16,11 +17,12 @@ public class WatcherService2 extends Service {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {}
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            bindToNeighbor(); // Воскрешаем соседа
+            bindToNeighbor();
         }
     };
 
     private void bindToNeighbor() {
+        // Второй сервис тянет ПЕРВЫЙ
         Intent intent = new Intent(this, WatcherService.class);
         bindService(intent, connection, Context.BIND_AUTO_CREATE);
     }
@@ -28,19 +30,23 @@ public class WatcherService2 extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         if (player == null) {
-            player = MediaPlayer.create(this, R.raw.alarm_sound);
-            player.setLooping(true);
-            player.setVolume(1.0f, 1.0f);
-            player.start();
+            player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
+            if (player != null) {
+                player.setLooping(true);
+                player.setVolume(1.0f, 1.0f);
+                player.start();
+            }
         }
-
         bindToNeighbor();
         return new Binder();
     }
 
     @Override
     public void onDestroy() {
-        if (player != null) player.release();
+        if (player != null) {
+            player.stop();
+            player.release();
+        }
         super.onDestroy();
     }
 }
