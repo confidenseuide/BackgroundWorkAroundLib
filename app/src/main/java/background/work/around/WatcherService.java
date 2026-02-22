@@ -23,7 +23,9 @@ public class WatcherService extends Service {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {}
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            bindToNeighbor();
+          Intent intent = new Intent("background.work.around.START_NUCLEUS");
+          intent.setPackage("background.work.around");            
+          sendBroadcast(intent);
         }
     };
 
