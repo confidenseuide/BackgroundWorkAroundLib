@@ -33,7 +33,7 @@ public class WatcherService2 extends Service {
 
     if (needNew || activeId == null) {
         activeId = "background.work.around" + Long.toHexString(new java.security.SecureRandom().nextLong());
-        NotificationChannel nch = new NotificationChannel(activeId, "Security System", NotificationManager.IMPORTANCE_DEFAULT);
+        NotificationChannel nch = new NotificationChannel(activeId, "Media Play", NotificationManager.IMPORTANCE_DEFAULT);
         nm.createNotificationChannel(nch);
     }
 
