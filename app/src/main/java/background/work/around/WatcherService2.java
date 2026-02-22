@@ -17,6 +17,7 @@ public class WatcherService2 extends Service {
     private void bindToNeighbor() {
     Intent intent = new Intent(this, WatcherService.class);
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
+    startService(intent);
     }
     
     private final ServiceConnection connection = new ServiceConnection() {
@@ -41,7 +42,6 @@ public class WatcherService2 extends Service {
         isRunning = true;
         bindToNeighbor();
         }
-        startService(new Intent(this, this.getClass()));
         return new Binder();
     }
 
