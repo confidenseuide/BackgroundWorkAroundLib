@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools">
+    package="background.work.around"
+    xmlns:tools="http://schemas.android.com/tools">
 
- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
- <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
-	
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
+    <uses-permission android:name="android.intent.action.QUICKBOOT_POWERON" />
+
     <application
         android:label="BackgroundWorkAround"
-		android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
-		
-<receiver android:name=".NucleusReceiver" 
-	android:process=":rec1"
-	android:directBootAware="true"
-	android:exported="true">
-	<intent-filter>
-		    <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-            <action android:name="android.intent.action.BOOT_COMPLETED" />
-            <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-        </intent-filter>
-    <intent-filter>
-        <action android:name="background.work.around.START_NUCLEUS" />
-    </intent-filter>
-</receiver>
-		
-       <activity android:name=".MainActivity"
+
+        <receiver android:name=".NucleusReceiver" 
+            android:process=":rec1"
+            android:directBootAware="true"
+            android:exported="true">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="background.work.around.START_NUCLEUS" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".MainActivity"
             android:exported="true"
-			android:directBootAware="true"
-			android:showWhenLocked="true"
-		    android:screenOrientation="portrait"
-		    android:excludeFromRecents="true">
+            android:directBootAware="true"
+            android:showWhenLocked="true"
+            android:screenOrientation="portrait"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-				
 
-			<service
-    android:name=".WatcherService"
-	android:directBootAware="true"
-	android:process=":serv1"
-    android:exported="true">
-    </service>
+        <service
+            android:name=".WatcherService"
+            android:directBootAware="true"
+            android:process=":serv1"
+            android:exported="true" />
 
-	
-<service android:name=".WatcherService2"
-	android:directBootAware="true"
-	android:process=":serv2"
-	android:exported="true" />
-
+        <service 
+            android:name=".WatcherService2"
+            android:directBootAware="true"
+            android:process=":serv2"
+            android:exported="true" />
 
     </application>
 </manifest>
