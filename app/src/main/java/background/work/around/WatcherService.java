@@ -43,6 +43,10 @@ public class WatcherService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+    if (!isRunning) {
+        isRunning = true;
+        bindToNeighbor();
+        }
     return START_STICKY;
     }
 
