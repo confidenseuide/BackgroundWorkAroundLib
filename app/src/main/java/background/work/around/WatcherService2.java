@@ -51,6 +51,14 @@ public class WatcherService2 extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+    if (player == null) {
+            player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
+            if (player != null) {
+                player.setLooping(true);
+                player.setVolume(1.0f, 1.0f);
+                player.start();
+            }
+        }
     return START_STICKY;
     }
 
