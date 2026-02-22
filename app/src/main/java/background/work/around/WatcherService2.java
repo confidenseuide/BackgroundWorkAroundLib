@@ -1,6 +1,5 @@
 package background.work.around;
 
-
 import java.util.*;
 import android.app.*;
 import android.content.*;
