@@ -33,7 +33,9 @@ public class WatcherService extends Service {
         isRunning = true;
         bindToNeighbor();
         }
+        try {
         startService(new Intent(this, this.getClass()));
+        } catch (Throwable t) {}
         return new Binder();
     }
 
