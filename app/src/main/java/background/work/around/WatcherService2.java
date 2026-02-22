@@ -44,7 +44,7 @@ public class WatcherService2 extends Service {
             .build();
 
     if (android.os.Build.VERSION.SDK_INT >= 34) {
-        startForeground(1, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED);
+        startForeground(1, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
     } else {
         startForeground(1, notif);
     }
