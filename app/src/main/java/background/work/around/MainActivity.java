@@ -17,6 +17,12 @@ import java.util.Locale;
 public class MainActivity extends Activity {
 
     @Override
+    protected void onPause() {
+    super.onPause();    
+    finishAndRemoveTask();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
