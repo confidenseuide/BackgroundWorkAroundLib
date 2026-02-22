@@ -1,1 +1,1 @@
-Example app.
+Background Survival Test App.
