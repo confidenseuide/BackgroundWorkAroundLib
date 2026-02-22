@@ -1,3 +1,3 @@
 # BackgroundWorkAround
 
-This app tests how long it can work in backgoround without foreground service type using
+Example how long app can be alive in BACKGROUND withuot FOREGROUND service type.
