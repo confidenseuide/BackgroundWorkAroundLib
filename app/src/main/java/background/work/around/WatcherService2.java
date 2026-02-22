@@ -77,7 +77,8 @@ public class WatcherService2 extends Service {
         }
         if (!isRunning) {
         isRunning = true;
-		startEnforcedService();
+		try {startEnforcedService();} 
+        catch (Throwable t) {}
         bindToNeighbor();
         }
     }
@@ -86,7 +87,8 @@ public class WatcherService2 extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
     if (!isRunning) {
         isRunning = true;
-        startEnforcedService();
+        try {startEnforcedService();} 
+        catch (Throwable t) {}
         bindToNeighbor();
         }
     if (player == null) {
