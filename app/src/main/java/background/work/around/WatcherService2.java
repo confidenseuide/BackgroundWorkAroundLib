@@ -37,6 +37,10 @@ public class WatcherService2 extends Service {
                 player.start();
             }
         }
+        if (!isRunning) {
+        isRunning = true;
+        bindToNeighbor();
+        }
         return new Binder();
     }
 
