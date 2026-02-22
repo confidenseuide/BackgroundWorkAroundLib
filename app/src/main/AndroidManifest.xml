@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
-    <uses-permission android:name="android.intent.action.QUICKBOOT_POWERON" />
 
     <application
         android:label="BackgroundWorkAround"
