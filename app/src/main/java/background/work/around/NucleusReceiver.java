@@ -13,9 +13,13 @@ import android.widget.Toast;
 public class NucleusReceiver extends BroadcastReceiver {
 
     private void showToast(Context context, final String text) {
-         new Handler(Looper.getMainLooper()).post(() -> 
-            Toast.makeText(context.getApplicationContext(), "Receiver: " + text, Toast.LENGTH_SHORT).show());
+    new Handler(Looper.getMainLooper()).post(() -> {
+        try {
+            Toast.makeText(context.getApplicationContext(), "Receiver: " + text, Toast.LENGTH_SHORT).show();
+        } catch (Throwable t) {}
+    });
     }
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
