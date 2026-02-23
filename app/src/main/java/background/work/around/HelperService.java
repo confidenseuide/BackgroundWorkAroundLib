@@ -22,37 +22,39 @@ public class HelperService extends Service {
     private void DestroyCleaner() {
 		isRunning = false;
 	}
-    
-    private void bindToNeighbor() {
+
+	
+	private void forceBindAndStart() {
     Intent intent = new Intent(this, RiderService.class);
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
     try {startService(intent);} 
     catch (Throwable t) {}
     }
+
+	private void initBindAndStart() {
+	   if (!isRunning) {
+        isRunning = true;
+        forceBindAndStart();
+        }
+	}
     
     private final ServiceConnection connection = new ServiceConnection() {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {}
         @Override
         public void onServiceDisconnected(ComponentName name) {
-          bindToNeighbor();
+          forceBindAndStart();
         }
     };
 
     @Override
     public IBinder onBind(Intent intent) {
-        if (!isRunning) {
-        isRunning = true;
-        bindToNeighbor();
-        }
+        initBindAndStart();
         return new Binder();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-    if (!isRunning) {
-        isRunning = true;
-        bindToNeighbor();
-        }
+	initBindAndStart();
     return START_STICKY;
     }
 
