@@ -10,7 +10,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.provider.Settings;
 
-public class WatcherService extends Service {
+public class HelperService extends Service {
     private boolean isRunning = false;
 
 	private void DestroyPanic() {
@@ -24,7 +24,7 @@ public class WatcherService extends Service {
 	}
     
     private void bindToNeighbor() {
-    Intent intent = new Intent(this, WatcherService2.class);
+    Intent intent = new Intent(this, RiderService.class);
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
     try {startService(intent);} 
     catch (Throwable t) {}
