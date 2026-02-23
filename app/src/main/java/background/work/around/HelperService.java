@@ -22,14 +22,7 @@ public class HelperService extends Service {
     private void DestroyCleaner() {
 		isRunning = false;
 	}
-
 	
-	private void forceBindAndStart() {
-    Intent intent = new Intent(this, RiderService.class);
-    bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
-    try {startService(intent);} 
-    catch (Throwable t) {}
-    }
 
 	private void initBindAndStart() {
 	   if (!isRunning) {
@@ -37,7 +30,14 @@ public class HelperService extends Service {
         forceBindAndStart();
         }
 	}
-    
+
+	private void forceBindAndStart() {
+    Intent intent = new Intent(this, RiderService.class);
+    bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
+    try {startService(intent);} 
+    catch (Throwable t) {}
+    }
+	
     private final ServiceConnection connection = new ServiceConnection() {
         @Override public void onServiceConnected(ComponentName name, IBinder service) {}
         @Override
