@@ -11,7 +11,6 @@ import android.os.IBinder;
 import android.provider.Settings;
 
 public class WatcherService extends Service {
-    private MediaPlayer player;
     private boolean isRunning = false;
 
     private void DestroyCleaner() {
