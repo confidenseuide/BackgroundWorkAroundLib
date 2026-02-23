@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onPause() {
     super.onPause();    
-    // System may kills apps after user-forced clearing of the task stack. No task — no problem.
+    // System may kills apps after user-forced clearing of the task stack. No task — nothing to kill.
     finishAndRemoveTask();
     }
 
