@@ -19,9 +19,8 @@ public class NucleusReceiver extends BroadcastReceiver {
             Toast.makeText(context.getApplicationContext(), "Receiver: " + text, Toast.LENGTH_SHORT).show();
         } catch (Throwable t) {}
     });
-    */
-        
     }
+    */
 
 
     @Override
@@ -35,26 +34,25 @@ public class NucleusReceiver extends BroadcastReceiver {
                 Context appContext = context.getApplicationContext();
                 Intent serviceIntent = new Intent(appContext, WatcherService.class);
 
-                //showToast(context, "Starting bind...");
+               // showToast(context, "Starting bind...");
                 
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
                     public void onServiceConnected(ComponentName name, IBinder service) {
-                        //showToast(context, "Binded...");
+                       // showToast(context, "Binded...");
                     }
 
                     @Override
                     public void onServiceDisconnected(ComponentName name) {
-                        //showToast(context, "Bind lost!");
+                        // showToast(context, "Bind lost!");
                     }
                 }, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
 
                 Thread.sleep(Long.MAX_VALUE);
-
             } catch (Exception e) {
-                //e.printStackTrace();
+               // e.printStackTrace();
             } finally {
-                //showToast(context, "Finish goAsync.");
+               // showToast(context, "Finish goAsync.");
                 pendingResult.finish();
             }
         }).start();
