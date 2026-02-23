@@ -14,7 +14,7 @@ public class WatcherService extends Service {
     private boolean isRunning = false;
 
 	private void DestroyPanic() {
-		Intent intent = new Intent("background.work.around.START_NUCLEUS");
+		Intent intent = new Intent("background.work.around.START");
         intent.setPackage("background.work.around");            
         sendBroadcast(intent);
 	}
