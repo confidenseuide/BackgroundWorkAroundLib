@@ -13,6 +13,10 @@ import android.provider.Settings;
 public class WatcherService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
+
+    private void DestroyCleaner() {
+		isRunning = false;
+	}
     
     private void bindToNeighbor() {
     Intent intent = new Intent(this, WatcherService2.class);
@@ -52,6 +56,7 @@ public class WatcherService extends Service {
         Intent intent = new Intent("background.work.around.START_NUCLEUS");
         intent.setPackage("background.work.around");            
         sendBroadcast(intent);
+        DestroyCleaner();
         super.onDestroy();
     }
 }
