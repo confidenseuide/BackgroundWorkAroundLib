@@ -8,7 +8,7 @@ import android.media.*;
 import android.os.*;
 import android.provider.*;
 
-public class WatcherService2 extends Service {
+public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
 
@@ -77,7 +77,7 @@ public class WatcherService2 extends Service {
 	}
     
     private void bindToNeighbor() {
-    Intent intent = new Intent(this, WatcherService.class);
+    Intent intent = new Intent(this, HelperService.class);
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
 	try {startService(intent);} 
     catch (Throwable t) {}
