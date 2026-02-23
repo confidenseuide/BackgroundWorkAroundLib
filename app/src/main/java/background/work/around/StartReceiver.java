@@ -10,7 +10,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.widget.Toast;
 
-public class NucleusReceiver extends BroadcastReceiver {
+public class StartReceiver extends BroadcastReceiver {
 
     /*
     private void showToast(Context context, final String text) {
