@@ -24,7 +24,7 @@
             </intent-filter>
             
             <intent-filter>
-                <action android:name="background.work.around.START" />
+                <action android:name="${applicationId}.START" />
             </intent-filter>
         </receiver>
 
