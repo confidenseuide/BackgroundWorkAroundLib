@@ -26,9 +26,9 @@ public class WatcherService2 extends Service {
 	private void DestroyCleaner() {
 		isRunning = false;
 		if (player != null) {
-			player = null;
             player.stop();
             player.release();
+			player = null;
         }
 	}
 	
