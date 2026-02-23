@@ -1,1 +1,1 @@
-Example of the most survival foreground service on Android without special rights. For demonstration of work plays sound and restarts at reboot (if system does not block autostart of boot receivers).
+Example of the most survival foreground service on Android without special rights. For demonstration of work plays sound and restarts at reboot.
