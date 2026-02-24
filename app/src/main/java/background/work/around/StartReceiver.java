@@ -25,6 +25,12 @@ public class StartReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        
+        if (intent == null) return;
+        if (intent.getAction() == null) return;
+        String action = intent.getAction();
+        if (!action.equals("android.intent.action.BOOT_COMPLETED") && !action.equals("android.intent.action.LOCKED_BOOT_COMPLETED") && !action.equals(context.getPackageName() + ".START")) return;
+
         //showToast(context, "Receiver goAsync");
         
        final PendingResult pendingResult = goAsync();
