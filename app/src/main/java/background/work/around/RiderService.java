@@ -11,7 +11,27 @@ import android.provider.*;
 public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
+	Handler handler;
+    Runnable runnable;
 
+	private void startHandler() {
+      handler = new Handler(Looper.getMainLooper());
+      runnable = new Runnable() {
+      @Override
+		public void run() {
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getPackageName() + ".START");
+        intent.setPackage(getPackageName()); 
+
+        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 777, intent, 
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 60000, pi);
+        
+        handler.postDelayed(this, 30000);
+		}};
+		handler.post(runnable);
+	}
+	
 	private void serviceMainVoid() {
 		if (player == null) {
             player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
@@ -36,6 +56,10 @@ public class RiderService extends Service {
             player.release();
 			player = null;
         }
+		if (handler != null) {
+        handler.removeCallbacks(runnable); 
+        handler = null;
+		}
 	}
 	
     private void startEnforcedService() {
@@ -86,6 +110,7 @@ public class RiderService extends Service {
 	   if (!isRunning) {
         isRunning = true;
 		forceBindAndStart();
+		startHandler();
 		TryStartEnforcedService();
 		serviceMainVoid();
         }
