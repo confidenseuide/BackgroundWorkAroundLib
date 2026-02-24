@@ -12,17 +12,6 @@ import android.widget.Toast;
 
 public class BootReceiver extends BroadcastReceiver {
 
-    /*
-    private void showToast(Context context, final String text) {
-    new Handler(Looper.getMainLooper()).post(() -> {
-        try {
-            Toast.makeText(context.getApplicationContext(), "Receiver: " + text, Toast.LENGTH_SHORT).show();
-        } catch (Throwable t) {}
-    });
-    }
-    */
-
-
     @Override
     public void onReceive(Context context, Intent intent) {
         
@@ -31,34 +20,30 @@ public class BootReceiver extends BroadcastReceiver {
         if (action == null) return;
         if (!action.equals("android.intent.action.BOOT_COMPLETED") && !action.equals("android.intent.action.LOCKED_BOOT_COMPLETED")) return;
 
-        //showToast(context, "Receiver goAsync");
-        
-       final PendingResult pendingResult = goAsync();
+        final PendingResult pendingResult = goAsync();
 
         new Thread(() -> {
             try {
                 Context appContext = context.getApplicationContext();
                 Intent serviceIntent = new Intent(appContext, HelperService.class);
 
-               // showToast(context, "Starting bind...");
-                
+        
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
                     public void onServiceConnected(ComponentName name, IBinder service) {
-                       // showToast(context, "Binded...");
+
                     }
 
                     @Override
                     public void onServiceDisconnected(ComponentName name) {
-                        // showToast(context, "Bind lost!");
+                        
                     }
                 }, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
 
                 Thread.sleep(Long.MAX_VALUE);
             } catch (Exception e) {
-               // e.printStackTrace();
+               
             } finally {
-               // showToast(context, "Finish goAsync.");
                 pendingResult.finish();
             }
         }).start();
