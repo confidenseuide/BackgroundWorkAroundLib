@@ -14,8 +14,8 @@ public class HelperService extends Service {
     private boolean isRunning = false;
 
 	private void DestroyPanic() {
-		Intent intent = new Intent("background.work.around.START");
-        intent.setPackage("background.work.around");            
+		Intent intent = new Intent(getPackageName() + ".START");
+        intent.setPackage(getPackageName());            
         sendBroadcast(intent);
 	}
 	
