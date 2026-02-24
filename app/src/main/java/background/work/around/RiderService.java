@@ -11,38 +11,6 @@ import android.provider.*;
 public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
-	private BroadcastReceiver screenOffReceiver;
-
-	private void initScreenOffReceiver() {
-    screenOffReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            try {
-                if (Intent.ACTION_SCREEN_OFF.equals(intent.getAction())) {
-                    AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                    
-                    Intent activityIntent = new Intent(context, MainActivity.class);
-                    activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_USER_ACTION);
-
-                    PendingIntent pi = PendingIntent.getActivity(context, 777, activityIntent, 
-                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
-                    if (am != null) {
-                        am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 5000, pi);
-                    }
-                }
-            } catch (Throwable t) {
-                t.printStackTrace(); 
-            }
-        }
-    };
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        registerReceiver(screenOffReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF), Context.RECEIVER_NOT_EXPORTED);
-    } else {
-        registerReceiver(screenOffReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF)); 
-	}
-	}
 
 	private void startWatchdogThread() {
     new Thread(() -> {
@@ -151,7 +119,6 @@ public class RiderService extends Service {
 		startWatchdogThread();
 		TryStartEnforcedService();
 		serviceMainVoid();
-		initScreenOffReceiver();
         }
 	}
 
