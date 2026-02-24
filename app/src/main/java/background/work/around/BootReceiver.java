@@ -29,7 +29,7 @@ public class BootReceiver extends BroadcastReceiver {
         if (intent == null) return;
         String action = intent.getAction();
         if (action == null) return;
-        if (!action.equals(context.getPackageName() + ".START")) return;
+        if (!action.equals("android.intent.action.BOOT_COMPLETED") && !action.equals("android.intent.action.LOCKED_BOOT_COMPLETED")) return;
 
         //showToast(context, "Receiver goAsync");
         
