@@ -10,6 +10,11 @@
 
     <application
         android:label="BackgroundWorkAround"
+        android:allowBackup="false"
+		android:debuggable="false"
+		android:requestLegacyExternalStorage="false"
+        android:fullBackupContent="false"
+		android:extractNativeLibs="false"
         android:icon="@drawable/ic_launcher"
         android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
 
