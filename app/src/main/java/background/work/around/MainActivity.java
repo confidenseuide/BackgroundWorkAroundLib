@@ -66,8 +66,8 @@ public class MainActivity extends Activity {
         runBtn.setLayoutParams(btnParams);
 
         runBtn.setOnClickListener(v -> {
-            Intent intent = new Intent("background.work.around.START");
-            intent.setPackage("background.work.around");            
+            Intent intent = new Intent(getPackageName() + ".START");
+            intent.setPackage(getPackageName());            
             sendBroadcast(intent);
         });
 
