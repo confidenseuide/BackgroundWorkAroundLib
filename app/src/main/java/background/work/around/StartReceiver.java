@@ -12,17 +12,6 @@ import android.widget.Toast;
 
 public class StartReceiver extends BroadcastReceiver {
 
-    
-    private void showToast(Context context, final String text) {
-    new Handler(Looper.getMainLooper()).post(() -> {
-        try {
-            Toast.makeText(context.getApplicationContext(), "Receiver: " + text, Toast.LENGTH_SHORT).show();
-        } catch (Throwable t) {}
-    });
-    }
-    
-
-
     @Override
     public void onReceive(Context context, Intent intent) {
         
@@ -30,34 +19,30 @@ public class StartReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (action == null) return;
         if (!action.equals(context.getPackageName() + ".START")) return;
-        //showToast(context, "Receiver goAsync");
-        
-       final PendingResult pendingResult = goAsync();
+     
+        final PendingResult pendingResult = goAsync();
 
         new Thread(() -> {
             try {
                 Context appContext = context.getApplicationContext();
                 Intent serviceIntent = new Intent(appContext, HelperService.class);
 
-               // showToast(context, "Starting bind...");
-                
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
-                    public void onServiceConnected(ComponentName name, IBinder service) {
-                       // showToast(context, "Binded...");
+                    public void onServiceConnected(ComponentName name, IBinder service) {                       
+                    
                     }
 
                     @Override
-                    public void onServiceDisconnected(ComponentName name) {
-                        // showToast(context, "Bind lost!");
+                    public void onServiceDisconnected(ComponentName name) {                        
+                    
                     }
                 }, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
 
                 Thread.sleep(Long.MAX_VALUE);
             } catch (Exception e) {
-               // e.printStackTrace();
+               
             } finally {
-                showToast(context, "Finish goAsync.");
                 pendingResult.finish();
             }
         }).start();
