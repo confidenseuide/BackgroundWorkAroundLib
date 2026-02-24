@@ -24,8 +24,8 @@ public class RiderService extends Service {
 	}
 
 	private void DestroyPanic() {
-		Intent intent = new Intent("background.work.around.START");
-        intent.setPackage("background.work.around");            
+		Intent intent = new Intent(getPackageName() + ".START");
+        intent.setPackage(getPackageName());            
         sendBroadcast(intent);
 	}
 	
