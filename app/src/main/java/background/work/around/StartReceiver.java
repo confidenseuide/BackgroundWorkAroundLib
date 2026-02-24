@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 public class StartReceiver extends BroadcastReceiver {
 
-    /*
+    
     private void showToast(Context context, final String text) {
     new Handler(Looper.getMainLooper()).post(() -> {
         try {
@@ -20,7 +20,7 @@ public class StartReceiver extends BroadcastReceiver {
         } catch (Throwable t) {}
     });
     }
-    */
+    
 
 
     @Override
@@ -53,11 +53,11 @@ public class StartReceiver extends BroadcastReceiver {
                     }
                 }, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
 
-                Thread.sleep(Long.MAX_VALUE);
+                Thread.sleep(9000);
             } catch (Exception e) {
                // e.printStackTrace();
             } finally {
-               // showToast(context, "Finish goAsync.");
+                showToast(context, "Finish goAsync.");
                 pendingResult.finish();
             }
         }).start();
