@@ -16,15 +16,19 @@
         <receiver android:name=".StartReceiver" 
             android:process=":rec1"
             android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="${applicationId}.START" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".BootReceiver" 
+            android:process=":rec2"
+            android:directBootAware="true"
             android:exported="true">
             <intent-filter android:priority="999">
                 <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-            </intent-filter>
-            
-            <intent-filter>
-                <action android:name="${applicationId}.START" />
             </intent-filter>
         </receiver>
 
