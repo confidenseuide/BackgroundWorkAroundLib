@@ -25,13 +25,13 @@ public class BootReceiver extends BroadcastReceiver {
             try {
                 AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 
-                Intent intent = new Intent(context.getPackageName() + ".START");
+                Intent intentAlarm = new Intent(context.getPackageName() + ".START");
                 intent.setPackage(context.getPackageName());
 
                 PendingIntent pi = PendingIntent.getBroadcast(
                         context, 
                         777, 
-                        intent, 
+                        intentAlarm, 
                         PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
                 );
 
