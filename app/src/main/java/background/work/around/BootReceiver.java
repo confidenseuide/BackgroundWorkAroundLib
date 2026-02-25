@@ -19,6 +19,8 @@ public class BootReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (action == null) return;
         if (!action.equals("android.intent.action.BOOT_COMPLETED") && !action.equals("android.intent.action.LOCKED_BOOT_COMPLETED") && !action.equals("android.intent.action.MY_PACKAGE_REPLACED") && !action.equals("android.intent.action.TIME_SET") && !action.equals("android.intent.action.TIMEZONE_CHANGED") && !action.equals("android.intent.action.LOCALE_CHANGED")) return;
+
+        if (action.equals("android.intent.action.TIME_SET") || action.equals("android.intent.action.TIMEZONE_CHANGED") || action.equals("android.intent.action.LOCALE_CHANGED")) {}
         
         final PendingResult pendingResult = goAsync();
 
