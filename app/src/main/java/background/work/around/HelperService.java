@@ -33,7 +33,7 @@ public class HelperService extends Service {
 
 	private void forceBindAndStart() {
     Intent intent = new Intent(this, RiderService.class);
-    bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
+    bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT);
     try {startService(intent);} 
     catch (Throwable t) {}
     }
