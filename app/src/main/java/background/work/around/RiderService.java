@@ -14,6 +14,7 @@ public class RiderService extends Service {
 
 	private void startWatchdogThread() {
     new Thread(() -> {
+		int one=30;
         Context ctx = getApplicationContext();
 
         while (true) {
@@ -31,12 +32,12 @@ public class RiderService extends Service {
                 );
 
                 if (am != null) {
-               am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 90000, pi);
+               am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (one * 500 *4) , pi);
                 }
             } catch (Throwable t) {
               
             } 
-            android.os.SystemClock.sleep(45000);
+            android.os.SystemClock.sleep(one*1000);
         }
     }).start();
 }
