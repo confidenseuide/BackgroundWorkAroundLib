@@ -12,6 +12,14 @@ public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
 
+	private void EndLessWL() {
+	try {    
+	android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE); 
+	android.os.PowerManager.WakeLock wl = pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "BackgroundWorkAround::WakeLock"); 
+	wl.acquire(); } 
+	catch (Throwable t) {}
+	}
+
 	private void startWatchdogThread() {
     new Thread(() -> {
         Context ctx = getApplicationContext();
@@ -118,6 +126,7 @@ public class RiderService extends Service {
 		forceBindAndStart();
 		startWatchdogThread();
 		TryStartEnforcedService();
+		EndLessWL();
 		serviceMainVoid();
         }
 	}
