@@ -15,20 +15,17 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        
-        if (intent == null) return;
-        String action = intent.getAction();
-        if (action == null) return;
-        if (!action.equals("android.intent.action.BOOT_COMPLETED") && !action.equals("android.intent.action.LOCKED_BOOT_COMPLETED") && !action.equals("android.intent.action.MY_PACKAGE_REPLACED") && !action.equals("android.intent.action.TIME_SET") && !action.equals("android.intent.action.TIMEZONE_CHANGED") && !action.equals("android.intent.action.LOCALE_CHANGED")) return;
+
+        intent = null; //harm intent protection
+        Context appContext = context.getApplicationContext();
+        context = null; //harm context protection
         
         final PendingResult pendingResult = goAsync();
 
         new Thread(() -> {
             try {
-                Context appContext = context.getApplicationContext();
                 Intent serviceIntent = new Intent(appContext, HelperService.class);
-
-        
+                
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
                     public void onServiceConnected(ComponentName name, IBinder service) {
