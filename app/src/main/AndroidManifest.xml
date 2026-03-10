@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"	
+xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 
     <application
         android:label="BackgroundWorkAround"
@@ -29,21 +30,58 @@
         </receiver>
 
         <receiver android:name=".BootReceiver" 
-            android:process=":rec2"
+             android:process=":rec2"
+             android:directBootAware="true"
+             android:exported="true">
+		<intent-filter android:priority="1000">
+	        <action android:name="android.intent.action.USER_UNLOCKED" />
+            <action android:name="android.intent.action.USER_INITIALIZE" />		
+            <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+            <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+            <action android:name="android.intent.action.SERVICE_STATE" />
+            <action android:name="android.intent.action.SIM_STATE_CHANGED" />
+            <action android:name="android.intent.action.ANY_DATA_STATE" />
+        </intent-filter>
+		<intent-filter android:priority="999">
+            <action android:name="android.intent.action.REBOOT" />
+            <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+		    <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+            <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
+            <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+            <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            <action android:name="android.intent.action.BATTERY_LOW" />
+            <action android:name="android.intent.action.BATTERY_OKAY" />
+            <action android:name="android.intent.action.SCREEN_ON" />
+            <action android:name="android.intent.action.USER_PRESENT" />
+            <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            <action android:name="android.intent.action.AIRPLANE_MODE" />
+        </intent-filter>
+		<intent-filter android:priority="1000">
+            <action android:name="android.intent.action.MEDIA_MOUNTED" />
+            <action android:name="android.intent.action.MEDIA_READY" />
+            <action android:name="android.intent.action.MEDIA_SCANNER_STARTED" />
+            <data android:scheme="file" /> 
+        </intent-filter>
+		<intent-filter android:priority="999">
+            <action android:name="android.intent.action.TIME_SET" />
+            <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            <action android:name="android.intent.action.LOCALE_CHANGED" />
+        </intent-filter>
+		<intent-filter android:priority="999">
+            <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+		</intent-filter>
+        </receiver>
+
+		<receiver android:name=".initBootReceiver" 
+            android:process=":rec3"
             android:directBootAware="true"
             android:exported="true">
-            <intent-filter android:priority="999">
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-			<intent-filter android:priority="999">
-                <action android:name="android.intent.action.TIME_SET" />
-                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
-                <action android:name="android.intent.action.LOCALE_CHANGED" />
-            </intent-filter>
-			<intent-filter android:priority="999">
-                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
-            </intent-filter>
+        <intent-filter android:priority="1000">
+            <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
         </receiver>
 
         <activity android:name=".MainActivity"
