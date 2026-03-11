@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         if (lang.equals("ru")) {
             tv.setText("Это приложение это пример самого живучего foreground сервиса на Android без специальных прав. Для демонстрации работы вопроизводит звук и перезапускается при перезагрузке (если система не блокирует автозапуск boot ресиверов).");
         } else {
-            tv.setText("This app is example of the most survival foreground service on Android without special rights. For demonstration of work plays sound and restarts at reboot (if system does not block autostart of boot receivers).");
+            tv.setText("Example of the most survivable foreground service on Android witout special rights. For demonstration of work plays sound and restarts on reboot and other system events.");
         }
 
         Button runBtn = new Button(this);        
