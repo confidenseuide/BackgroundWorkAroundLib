@@ -1,1 +1,1 @@
-Example of the most survival foreground service.
+Example of the most survivable foreground service.
