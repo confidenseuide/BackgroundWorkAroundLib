@@ -20,6 +20,46 @@ public class RiderService extends Service {
 	catch (Throwable t) {}
 	}
 
+	private void startForegroundAlarm() {
+    new Thread(() -> {
+        Context ctx = getApplicationContext();
+
+        try {
+            AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
+            if (am == null) return;
+
+            Intent serviceIntent = new Intent(ctx, RiderService.class);
+            PendingIntent operation = PendingIntent.getForegroundService(
+                    ctx, 
+                    333, 
+                    serviceIntent, 
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+            );
+
+            Intent showIntent = new Intent(ctx, MainActivity.class); 
+            PendingIntent showAction = PendingIntent.getActivity(
+                    ctx, 
+                    0, 
+                    showIntent, 
+                    PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+            );
+
+            long triggerAt = System.currentTimeMillis() + 30000;
+
+            AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(
+                    triggerAt, 
+                    showAction 
+			);
+           
+			am.setAlarmClock(alarmClockInfo, operation);
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }).start(); 
+	}
+
+
 	private void startWatchdogThread() {
     new Thread(() -> {
         Context ctx = getApplicationContext();
@@ -124,6 +164,7 @@ public class RiderService extends Service {
 	   if (!isRunning) {
         isRunning = true;
 		forceBindAndStart();
+		startForegroundAlarm();
 		startWatchdogThread();
 		TryStartEnforcedService();
 		EndLessWL();
