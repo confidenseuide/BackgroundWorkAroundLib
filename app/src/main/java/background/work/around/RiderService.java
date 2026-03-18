@@ -15,16 +15,18 @@ public class RiderService extends Service {
 	private void EndLessWL() {	
 	new Thread(() -> {
 	android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE);
+	android.os.PowerManager.WakeLock[] wl = new android.os.PowerManager.WakeLock[10]; 
 	int i = 0;
 	while (true) {
 	try {
+	if (i<0) i=10;
+	if (i<10) wl[i%10] = pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "BackgroundWorkAround"+String.valueOf(i%10)+"::WakeLock"+String.valueOf(i%10));
+	wl[i%10].acquire(3000); 
 	i++;
-	android.os.PowerManager.WakeLock wl = pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "BackgroundWorkAround"+String.valueOf(i)+"::WakeLock"+String.valueOf(i));
-	wl.acquire(3000); 
 	} catch (Throwable t) {}
 	android.os.SystemClock.sleep(333); }
 	}).start(); }
-
+	
 	private void startForegroundAlarm() {
     new Thread(() -> {
         Context ctx = getApplicationContext();
