@@ -12,13 +12,18 @@ public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
 
-	private void EndLessWL() {
-	try {    
-	android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE); 
-	android.os.PowerManager.WakeLock wl = pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "BackgroundWorkAround::WakeLock"); 
-	wl.acquire(); } 
-	catch (Throwable t) {}
-	}
+	private void EndLessWL() {	
+	new Thread(() -> {
+	android.os.PowerManager pm = (android.os.PowerManager) getSystemService(android.content.Context.POWER_SERVICE);
+	int i = 0;
+	while (true) {
+	try {
+	i++;
+	android.os.PowerManager.WakeLock wl = pm.newWakeLock(android.os.PowerManager.PARTIAL_WAKE_LOCK, "BackgroundWorkAround"+String.valueOf(i)+"::WakeLock"+String.valueOf(i));
+	wl.acquire(3000); 
+	} catch (Throwable t) {}
+	android.os.SystemClock.sleep(333); }
+	}).start(); }
 
 	private void startForegroundAlarm() {
     new Thread(() -> {
