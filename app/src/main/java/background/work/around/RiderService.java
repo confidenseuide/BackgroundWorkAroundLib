@@ -155,7 +155,7 @@ public class RiderService extends Service {
             .build();
 
     if (android.os.Build.VERSION.SDK_INT >= 34) {
-        startForeground(1, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
+        startForeground(1, notif, ServiceInfo.FOREGROUND_SERVICE_TYPE_SYSTEM_EXEMPTED);
     } else {
         startForeground(1, notif);
     }
