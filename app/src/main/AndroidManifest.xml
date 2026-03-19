@@ -5,8 +5,8 @@ xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECEIVE_LOCKED_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 
@@ -107,14 +107,10 @@ xmlns:tools="http://schemas.android.com/tools">
         <service 
             android:name=".RiderService"
             android:directBootAware="true"
-            android:foregroundServiceType="specialUse"
+            android:foregroundServiceType="systemExempted"
             android:process=":serv2"
             android:stopWithTask="false"
-            android:exported="false">
-       <property
-        android:name="android.app.PROPERTY_SPECIAL_USE_FGS_TYPE"
-        android:value="Universal foreground service"/>
-        </service>
+            android:exported="false"/>     
 
     </application>
 </manifest>
