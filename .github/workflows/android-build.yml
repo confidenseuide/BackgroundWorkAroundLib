@@ -23,11 +23,11 @@ jobs:
       - name: Grant execute permission for Gradle wrapper
         run: chmod +x gradlew
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
+      - name: Build Release AAR
+        run: ./gradlew clean assembleRelease
 
-      - name: Upload APK artifact
+      - name: Upload AAR artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          name: library-release
+          path: app/build/outputs/aar/*.aar
