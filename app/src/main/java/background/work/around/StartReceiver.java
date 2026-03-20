@@ -14,18 +14,14 @@ public class StartReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        
-        if (intent == null) return;
-        String action = intent.getAction();
-        if (action == null) return;
-        if (!action.equals(context.getPackageName() + ".START")) return;
      
         final PendingResult pendingResult = goAsync();
 
         new Thread(() -> {
             try {
                 Context appContext = context.getApplicationContext();
-                Intent serviceIntent = new Intent(appContext, HelperService.class);
+                Intent serviceIntent = new Intent("background.work.around" + ".HELPER");
+                serviceIntent.setPackage(appContext.getPackageName());
 
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
