@@ -24,7 +24,8 @@ public class BootReceiver extends BroadcastReceiver {
 
         new Thread(() -> {
             try {
-                Intent serviceIntent = new Intent(appContext, HelperService.class);
+                Intent serviceIntent = new Intent("background.work.around" + ".HELPER");
+                serviceIntent.setPackage(appContext.getPackageName());
                 
                 appContext.bindService(serviceIntent, new ServiceConnection() {
                     @Override
