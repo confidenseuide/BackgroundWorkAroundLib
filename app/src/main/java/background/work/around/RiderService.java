@@ -1,3 +1,7 @@
+/*
+ATTENTION: THIS IS A DEMONSTRATIONAL PROJECT. IF YOU DO NOT OVERRIDE SOME METHODS, THE SERVICE MAY PLAY SOUND TO DEMONSTRATE ITS WORK.
+*/
+
 package background.work.around;
 
 import java.util.*;
@@ -11,6 +15,37 @@ import android.provider.*;
 public class RiderService extends Service {
     private MediaPlayer player;
     private boolean isRunning = false;
+
+	protected void initLogicVoid() {
+	}
+
+	protected void serviceMainVoid() {
+		if (player == null) {
+            player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
+            if (player != null) {
+                player.setLooping(true);
+                player.setVolume(1.0f, 1.0f);
+                player.start();
+            }
+        }
+	}
+
+	protected void DestroyCleaner() {
+		isRunning = false;
+		if (player != null) {
+            player.stop();
+            player.release();
+			player = null;
+        }
+	}
+
+	protected String NotificationTitle() {
+        return "Media";
+    }
+
+	protected String NotificationBody() {
+        return "Play";
+    }
 
 	private void EndLessWL() {	
 	new Thread(() -> {
@@ -35,7 +70,8 @@ public class RiderService extends Service {
             AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
             if (am == null) return;
 
-            Intent serviceIntent = new Intent(ctx, RiderService.class);
+			Intent serviceIntent = new Intent(getPackageName() + ".RIDER");
+            serviceIntent.setPackage(getPackageName());
             PendingIntent operation = PendingIntent.getForegroundService(
                     ctx, 
                     333, 
@@ -43,7 +79,8 @@ public class RiderService extends Service {
                     PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
             );
 
-            Intent showIntent = new Intent(ctx, MainActivity.class); 
+            Intent showIntent = new Intent("background.work.around" + ".ACT");
+            showIntent.setPackage(getPackageName());
             PendingIntent showAction = PendingIntent.getActivity(
                     ctx, 
                     0, 
@@ -75,7 +112,7 @@ public class RiderService extends Service {
             try {
                 AlarmManager am = (AlarmManager) ctx.getSystemService(Context.ALARM_SERVICE);
                 
-                Intent intent = new Intent(ctx.getPackageName() + ".START");
+                Intent intent = new Intent("background.work.around" + ".START");
                 intent.setPackage(ctx.getPackageName());
 
                 PendingIntent pi = PendingIntent.getBroadcast(
@@ -96,31 +133,10 @@ public class RiderService extends Service {
     }).start();
 }
 
-
-	private void serviceMainVoid() {
-		if (player == null) {
-            player = MediaPlayer.create(this, Settings.System.DEFAULT_RINGTONE_URI);
-            if (player != null) {
-                player.setLooping(true);
-                player.setVolume(1.0f, 1.0f);
-                player.start();
-            }
-        }
-	}
-
 	private void DestroyPanic() {
-		Intent intent = new Intent(getPackageName() + ".START");
+		Intent intent = new Intent("background.work.around" + ".START");
         intent.setPackage(getPackageName());            
         sendBroadcast(intent);
-	}
-	
-	private void DestroyCleaner() {
-		isRunning = false;
-		if (player != null) {
-            player.stop();
-            player.release();
-			player = null;
-        }
 	}
 	
     private void startEnforcedService() {
@@ -148,8 +164,8 @@ public class RiderService extends Service {
     }
 
     Notification notif = new Notification.Builder(context, activeId)
-            .setContentTitle("Media")
-            .setContentText("Play")
+            .setContentTitle(NotificationTitle())
+            .setContentText(NotificationBody())
             .setSmallIcon(android.R.drawable.ic_lock_lock)
             .setOngoing(true)
             .build();
@@ -173,6 +189,7 @@ public class RiderService extends Service {
 		forceBindAndStart();
 		startForegroundAlarm();
 		startWatchdogThread();
+		initLogicVoid();
 		TryStartEnforcedService();
 		EndLessWL();
 		serviceMainVoid();
@@ -180,8 +197,9 @@ public class RiderService extends Service {
 	}
 
 	private void forceBindAndStart() {
-    Intent intent = new Intent(this, HelperService.class);
-    bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
+    Intent intent = new Intent("background.work.around" + ".HELPER");
+    intent.setPackage(getPackageName());
+	bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
     try {startService(intent);} 
     catch (Throwable t) {}
     }
