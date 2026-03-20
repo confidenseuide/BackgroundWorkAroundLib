@@ -1,5 +1,5 @@
 plugins {
-id 'com.android.application'
+id 'com.android.library'
 }
 
 android {
@@ -11,11 +11,12 @@ lint {
     }
 
 defaultConfig {  
-    applicationId "background.work.around"  
+    
     minSdk 29
     targetSdk 36
-    versionCode 9
-    versionName "9.0"  
+    versionCode 1
+    versionName "1.0"  
+    consumerProguardFiles 'consumer-rules.pro'
 }  
 
 buildTypes {  
@@ -28,5 +29,4 @@ buildTypes {
 }
 
 dependencies {
-implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
