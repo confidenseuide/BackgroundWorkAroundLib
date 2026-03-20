@@ -28,7 +28,7 @@ public class HelperService extends Service {
     }
 	
 	private void DestroyPanic() {
-		Intent intent = new Intent(getPackageName() + ".START");
+		Intent intent = new Intent("background.work.around" + ".START");
         intent.setPackage(getPackageName());            
         sendBroadcast(intent);
 	}
@@ -47,7 +47,8 @@ public class HelperService extends Service {
 	}
 
 	private void forceBindAndStart() {
-    Intent intent = new Intent(this, RiderService.class);
+    Intent intent = new Intent(getPackageName() + ".RIDER");
+    intent.setPackage(getPackageName());
     bindService(intent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
     try {startService(intent);} 
     catch (Throwable t) {}
