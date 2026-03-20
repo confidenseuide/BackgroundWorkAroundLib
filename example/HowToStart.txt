@@ -1,3 +1,3 @@
-//To start use:
+//To start use in Java/Kotlin:
 background.work.around.Start.RunService(this);
 //or your context instead of "this".
