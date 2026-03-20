@@ -12,26 +12,18 @@ xmlns:tools="http://schemas.android.com/tools">
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 
-    <application
-        android:label="BackgroundWorkAround"
-        android:allowBackup="false"
-		android:debuggable="false"
-		android:requestLegacyExternalStorage="false"
-        android:fullBackupContent="false"
-		android:extractNativeLibs="false"
-        android:icon="@drawable/ic_launcher"
-        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+    <application>
 
-        <receiver android:name=".StartReceiver" 
+        <receiver android:name="background.work.around.StartReceiver" 
             android:process=":rec1"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="${applicationId}.START" />
+                <action android:name="background.work.around.START" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".BootReceiver" 
+        <receiver android:name="background.work.around.BootReceiver" 
              android:process=":rec2"
              android:directBootAware="true"
              android:exported="true">
@@ -76,7 +68,7 @@ xmlns:tools="http://schemas.android.com/tools">
 		</intent-filter>
         </receiver>
 
-		<receiver android:name=".initBootReceiver" 
+		<receiver android:name="background.work.around.initBootReceiver" 
             android:process=":rec3"
             android:directBootAware="true"
             android:exported="true">
@@ -86,33 +78,40 @@ xmlns:tools="http://schemas.android.com/tools">
         </intent-filter>
         </receiver>
 
-        <activity android:name=".MainActivity"
-            android:exported="true"
+        <activity android:name="background.work.around.MainActivity"
+            android:exported="false"
             android:directBootAware="true"
             android:process=":act0"
             android:showWhenLocked="true"
             android:screenOrientation="portrait"
             android:excludeFromRecents="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+		<intent-filter>
+            <action android:name="background.work.around.ACT" />
+        </intent-filter>
         </activity>
 
         <service
-            android:name=".HelperService"
+            android:name="background.work.around.HelperService"
             android:directBootAware="true"
             android:process=":serv1"
             android:stopWithTask="false"
-            android:exported="false" />
+            android:exported="false">
+		<intent-filter>
+            <action android:name="background.work.around.HELPER" />
+        </intent-filter>
+		</service>
 
         <service 
-            android:name=".RiderService"
+            android:name="${applicationId}.RiderService"
             android:directBootAware="true"
             android:foregroundServiceType="systemExempted"
             android:process=":serv2"
             android:stopWithTask="false"
-            android:exported="false"/>     
+            android:exported="false"> 
+		<intent-filter>
+            <action android:name="${applicationId}.RIDER" />
+        </intent-filter>
+		</service>
 
     </application>
 </manifest>
