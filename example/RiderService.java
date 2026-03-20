@@ -17,10 +17,10 @@ package your.pack.name;
 public class RiderService extends background.work.around.RiderService {
 
     @Override
-    protected String NotificationTitle() { return "TitleName"; }
+    protected String NotificationTitle() { return "YourTitleName"; }
 
     @Override
-    protected String NotificationBody() { return "BodyName"; }
+    protected String NotificationBody() { return "YourBodyName"; }
 
     @Override
     protected void initLogicVoid() {
