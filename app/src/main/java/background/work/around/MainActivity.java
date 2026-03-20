@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!getPackageName().equals("background.work.around")) return;
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -66,7 +67,7 @@ public class MainActivity extends Activity {
         runBtn.setLayoutParams(btnParams);
 
         runBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getPackageName() + ".START");
+            Intent intent = new Intent("background.work.around" + ".START");
             intent.setPackage(getPackageName());            
             sendBroadcast(intent);
         });
@@ -80,6 +81,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (!getPackageName().equals("background.work.around")) finishAndRemoveTask();
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
