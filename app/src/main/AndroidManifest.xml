@@ -15,7 +15,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <application>
 
         <receiver android:name="background.work.around.StartReceiver" 
-            android:process=":rec1"
+            android:process=":bwalibrec1"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
@@ -24,7 +24,7 @@ xmlns:tools="http://schemas.android.com/tools">
         </receiver>
 
         <receiver android:name="background.work.around.BootReceiver" 
-             android:process=":rec2"
+             android:process=":bwalibrec2"
              android:directBootAware="true"
              android:exported="true">
 		<intent-filter android:priority="1000">
@@ -69,7 +69,7 @@ xmlns:tools="http://schemas.android.com/tools">
         </receiver>
 
 		<receiver android:name="background.work.around.initBootReceiver" 
-            android:process=":rec3"
+            android:process=":bwalibrec3"
             android:directBootAware="true"
             android:exported="true">
         <intent-filter android:priority="1000">
@@ -81,7 +81,7 @@ xmlns:tools="http://schemas.android.com/tools">
         <activity android:name="background.work.around.MainActivity"
             android:exported="false"
             android:directBootAware="true"
-            android:process=":act0"
+            android:process=":bwalibact0"
             android:showWhenLocked="true"
             android:screenOrientation="portrait"
             android:excludeFromRecents="true">
@@ -93,7 +93,7 @@ xmlns:tools="http://schemas.android.com/tools">
         <service
             android:name="background.work.around.HelperService"
             android:directBootAware="true"
-            android:process=":serv1"
+            android:process=":bwalibserv1"
             android:stopWithTask="false"
             android:exported="false">
 		<intent-filter>
@@ -105,7 +105,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name="${applicationId}.RiderService"
             android:directBootAware="true"
             android:foregroundServiceType="systemExempted"
-            android:process=":serv2"
+            android:process=":bwalibserv2"
             android:stopWithTask="false"
             android:exported="false"> 
 		<intent-filter>
