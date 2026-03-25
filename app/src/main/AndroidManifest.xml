@@ -14,12 +14,30 @@ xmlns:tools="http://schemas.android.com/tools">
 
     <application>
 
+		<receiver android:name=".AlarmReceiver" 
+            android:process=":alarmrec"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="background.work.around.ALARM" />
+            </intent-filter>
+        </receiver>
+
         <receiver android:name="background.work.around.StartReceiver" 
             android:process=":bwalibrec1"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="background.work.around.START" />
+            </intent-filter>
+        </receiver>
+
+		<receiver android:name=".iStartReceiver" 
+            android:process=":irec1"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="background.work.around.START2" />
             </intent-filter>
         </receiver>
 
