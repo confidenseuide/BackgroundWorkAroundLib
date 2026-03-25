@@ -10,8 +10,7 @@ lint {
         checkReleaseBuilds false
     }
 
-defaultConfig {  
-    
+defaultConfig {   
     minSdk 29
     targetSdk 36
     versionCode 3
