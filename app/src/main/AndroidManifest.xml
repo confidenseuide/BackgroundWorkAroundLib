@@ -33,7 +33,7 @@ xmlns:tools="http://schemas.android.com/tools">
         </receiver>
 
 		<receiver android:name=".iStartReceiver" 
-            android:process=":bwalibirec1"
+            android:process=":bwalibirecstart2"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
