@@ -34,7 +34,7 @@ public class HelperService extends Service {
 	}
 
 	private void DestroyPanic2() {
-		Intent intent = new Intent("background.work.around" + ".START");
+		Intent intent = new Intent("background.work.around" + ".START2");
         intent.setPackage(getPackageName());            
         sendOrderedBroadcast(intent, null);
 	}
