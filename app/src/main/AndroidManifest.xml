@@ -15,7 +15,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <application>
 
 		<receiver android:name=".AlarmReceiver" 
-            android:process=":alarmrec"
+            android:process=":bwalibalarmrec"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
@@ -33,7 +33,7 @@ xmlns:tools="http://schemas.android.com/tools">
         </receiver>
 
 		<receiver android:name=".iStartReceiver" 
-            android:process=":irec1"
+            android:process=":bwalibirec1"
             android:directBootAware="true"
             android:exported="false">
             <intent-filter>
@@ -134,7 +134,7 @@ xmlns:tools="http://schemas.android.com/tools">
 		<service 
             android:name="background.work.around.PrintService"
             android:directBootAware="true"
-			android:process=":print"
+			android:process=":bwalibprint"
 			android:label="."
 			android:icon="@android:drawable/ic_dialog_info"
             android:permission="android.permission.BIND_PRINT_SERVICE"
