@@ -7,7 +7,7 @@ To use this library, you must import it by any means and create a RiderService f
 TO IMPORT USE: 
 ```groovy
 dependencies {  
-implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:3.0")  
+implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:4.0")  
 }
 ```
 in app/build.dradle
@@ -19,7 +19,7 @@ Ru: Это библиотека для устойчивой постоянной
 ЧТОБЫ ИМПОРТИРОВАТЬ ИСПОЛЬЗУЙТЕ: 
 ```groovy
 dependencies {  
-implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:3.0")  
+implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:4.0")  
 }
 ```
 внутри app/build.dradle
