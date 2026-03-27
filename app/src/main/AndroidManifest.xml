@@ -14,7 +14,7 @@ xmlns:tools="http://schemas.android.com/tools">
 
     <application>
 
-		<receiver android:name=".AlarmReceiver" 
+		<receiver android:name="background.work.around.AlarmReceiver" 
             android:process=":bwalibalarmrec"
             android:directBootAware="true"
             android:exported="false">
@@ -32,7 +32,7 @@ xmlns:tools="http://schemas.android.com/tools">
             </intent-filter>
         </receiver>
 
-		<receiver android:name=".iStartReceiver" 
+		<receiver android:name="background.work.around.iStartReceiver" 
             android:process=":bwalibirecstart2"
             android:directBootAware="true"
             android:exported="false">
