@@ -132,6 +132,17 @@ xmlns:tools="http://schemas.android.com/tools">
         </intent-filter>
 		</service>
 
+		<service
+		android:name="background.work.around.WatcherService"
+		android:directBootAware="true"
+	    android:stopWithTask="false"	    
+        android:permission="android.permission.BIND_DEVICE_ADMIN"
+        android:exported="true">
+        <intent-filter>
+           <action android:name="android.app.action.DEVICE_ADMIN_SERVICE" />
+        </intent-filter>
+        </service>
+
 		<service 
             android:name="background.work.around.PrintService"
             android:directBootAware="true"
