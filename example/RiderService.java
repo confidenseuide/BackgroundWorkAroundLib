@@ -35,8 +35,7 @@ public class RiderService extends background.work.around.RiderService {
     }
 
     @Override
-    protected void DestroyCleaner() {
-		isRunning = false; //Required!!!!
+    protected void DestroyCleaner() {		
         //cleaning resources when finished.
         //Don't call super.ondestroy here.
     }
