@@ -40,7 +40,7 @@ public class WatcherService extends DeviceAdminService {
 		background.work.around.Start.RunService(this);
 		BindHelper();
 		try {
-		Intent serviceIntent = new Intent(this, background.work.around.RiderService.class);
+		Intent serviceIntent = new Intent(getPackageName() + ".RIDER");
         startForegroundService(serviceIntent);
         } catch (Throwable t) {}		
     }
