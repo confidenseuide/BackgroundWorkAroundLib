@@ -30,8 +30,7 @@ public class RiderService extends Service {
         }
 	}
 
-	protected void DestroyCleaner() {
-		isRunning = false;
+	protected void DestroyCleaner() {		
 		if (player != null) {
             player.stop();
             player.release();
@@ -212,6 +211,7 @@ public class RiderService extends Service {
     @Override
     public void onDestroy() {
         DestroyPanic();
+		isRunning = false;
 		DestroyCleaner();
         super.onDestroy();
     }
