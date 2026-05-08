@@ -1,1 +1,33 @@
+	<service
+		android:name="background.work.around.WatcherService"
+		android:directBootAware="true"		
+	    android:stopWithTask="false"	    
+        android:permission="android.permission.BIND_DEVICE_ADMIN"
+        android:exported="true">
+        <intent-filter>
+           <action android:name="android.app.action.DEVICE_ADMIN_SERVICE" />
+        </intent-filter>
+  </service>
 
+
+<--Or your receiver-->
+	<receiver		
+			android:directBootAware="true"
+			android:exported="true"
+			android:process=":pr1"
+            android:name="background.work.around.MyDeviceAdminReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+                <action android:name="android.app.action.DEVICE_ADMIN_DISABLED" />
+				<action android:name="android.app.action.PASSWORD_FAILED" />
+				<action android:name="android.app.action.PASSWORD_SUCCEEDED" />
+            </intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED"/>
+				<action android:name="android.intent.action.LOCKED_BOOT_COMPLETED"/>
+			</intent-filter>
+        </receiver>  
