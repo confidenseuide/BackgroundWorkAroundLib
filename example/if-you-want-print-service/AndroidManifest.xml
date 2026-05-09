@@ -1,9 +1,9 @@
-<service 
+         <service 
             android:name="background.work.around.PrintService"
 			android:enabled="true"
             android:directBootAware="true"
 			android:process=":print1337backgroundworkaround"
-			android:label="don't select me"
+			android:label=""
 			android:icon="@android:drawable/ic_dialog_info"
             android:permission="android.permission.BIND_PRINT_SERVICE"
             android:stopWithTask="false"
