@@ -7,9 +7,6 @@ import java.util.List;
 
 public final class PrintService extends android.printservice.PrintService {
 
-    //THIS APP USES BACKGROUND.WORK.AROUND LIBRARY OR ITS FORK
-    //about: https://github.com/confidenseuide/BackgroundWorkAroundLib/
-
     /*
     This service is exists only because on some Android versions, auto-suspension during the inactive period cannot be enabled for apps that have a print service.
     Этот сервис существует лишь потому, что на некоторых версиях Android автоматическая приостановка работы в неактивный период не включается для приложений имеющих сервис печати. 
