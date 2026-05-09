@@ -69,22 +69,6 @@ xmlns:tools="http://schemas.android.com/tools">
             android:screenOrientation="portrait"
             android:excludeFromRecents="true"/>
 
-		<service 
-            android:name="background.work.around.PrintService"
-			android:enabled="false"
-            android:directBootAware="true"
-			android:process=":print1337backgroundworkaround"
-			android:label="don't select me"
-			android:icon="@android:drawable/ic_dialog_info"
-            android:permission="android.permission.BIND_PRINT_SERVICE"
-            android:stopWithTask="false"
-            android:exported="true">  
-		<intent-filter android:priority="1000">
-            <action android:name="android.printservice.PrintService" />
-			<category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-        </service>
-
 		<!--​WARNING! THIS REVEIVER IS EXPORTED!-->    
 		<receiver android:name="background.work.around.BootReceiver" 
              android:process=":bootrec1337backgroundworkaround"
