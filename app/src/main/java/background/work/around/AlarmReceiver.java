@@ -12,6 +12,16 @@ import android.widget.Toast;
 
 public final class AlarmReceiver extends BroadcastReceiver {
 
+    private static final ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    };
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -24,18 +34,8 @@ public final class AlarmReceiver extends BroadcastReceiver {
         new Thread(() -> {
             try {                
                 Intent serviceIntent = new Intent(appContext, HelperService.class);                
-
-                appContext.bindService(serviceIntent, new ServiceConnection() {
-                    @Override
-                    public void onServiceConnected(ComponentName name, IBinder service) {                       
-                    
-                    }
-
-                    @Override
-                    public void onServiceDisconnected(ComponentName name) {                        
-                    
-                    }
-                }, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
+                
+                appContext.bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE | Context.BIND_IMPORTANT | Context.BIND_ABOVE_CLIENT);
                 try {
                 Class<?> serviceClass = Class.forName("background.work.around.RiderService");
                 Intent serviceIntent2 = new Intent(appContext, serviceClass);
