@@ -4,6 +4,8 @@ En: This is a library for the stable, continuous operation of background service
 
 To use this library, you must import it by any means and create a RiderService file in your application project strictly at the path app/src/main/java/background/work/around/RiderService.java. For more information, see example/RiderService.java.
 
+WARNING: DON'T USE application-id background.work.around. This is debug mode, plays sound.
+
 TO IMPORT USE: 
 ```groovy
 dependencies {  
@@ -15,6 +17,8 @@ in app/build.dradle
 Ru: Это библиотека для устойчивой постоянной работы фоновых сервисов. Сервис использующий эту библиотеку будет постоянно работать в фоне, автозапускаться при перезагрузке и множестве других системных событий, а также перезапускаться при падении. Если ваш сервис критически важен, вы можете использовать эту библиотку для обеспечения его работы.
 
 Чтобы использовать эту библиотеку вы должны её импортироватть любым способом и создать файл RiderService в проекте приложения строго по пути app/src/main/java/background/work/around/RiderService.java. Подробнее в example/RiderService.java.
+
+ВНИМАНИЕ: НЕ ИСПОЛЬЗУЙТЕ application-id background.work.around. Это режим отладки, воспроизводит звук.
 
 ЧТОБЫ ИМПОРТИРОВАТЬ ИСПОЛЬЗУЙТЕ: 
 ```groovy
