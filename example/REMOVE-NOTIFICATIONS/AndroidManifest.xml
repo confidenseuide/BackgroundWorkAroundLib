@@ -1,0 +1,2 @@
+<!-- IF YOU WANT REMOVE NOTIFICATIONS FROM FOREGOUND SERVICE, JUST DELETE PERMISSION, AND ON ANDROID 13+ THEY WILL BE HIDDEN.-->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove" />
