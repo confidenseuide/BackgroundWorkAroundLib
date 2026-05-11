@@ -1,4 +1,4 @@
-<!--SAFETY EXAMPLE. IF YOU WANT MORE SAFETY, BUT LESS PERFORMANSE-->
+<!--SAFETY EXAMPLE. IF YOU WANT MORE SAFETY, BUT LESS PERFORMANCE-->
 <receiver 
 android:name="background.work.around.BootReceiver" 
 android:exported="false"
