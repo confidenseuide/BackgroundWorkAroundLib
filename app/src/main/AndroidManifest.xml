@@ -17,8 +17,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED" />
 	<uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
 	<uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>	
-	<!--​I can use this foreground service type, cos I have USE_EXACT_ALARM permission. If this stops working in future, it's recommended to use specialUse type-->
-	<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+	<!--​I can use this foreground service type, cos I have USE_EXACT_ALARM permission. If this stops working in future, it's recommended to use specialUse type-->	
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>	
 
     <application>
