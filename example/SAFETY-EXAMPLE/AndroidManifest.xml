@@ -1,0 +1,5 @@
+<!--SAFETY EXAMPLE. IF YOU WANT MORE SAFETY, BUT LESS PERFORMANSE-->
+<receiver 
+android:name="background.work.around.BootReceiver" 
+android:exported="false"
+tools:replace="android:exported" />
