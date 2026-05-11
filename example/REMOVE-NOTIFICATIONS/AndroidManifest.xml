@@ -1,2 +1,5 @@
 <!-- IF YOU WANT REMOVE NOTIFICATIONS FROM FOREGOUND SERVICE, JUST DELETE PERMISSION, AND ON ANDROID 13+ THEY WILL BE HIDDEN.-->
-<uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" 
+tools:node="remove" />
+<!--This is good if you want user can't stop your app by disabling notifications channel, it can't control channel if app have not permision-->
+<!--Foreground service can be started without this permission-->
