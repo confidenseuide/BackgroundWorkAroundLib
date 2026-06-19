@@ -9,7 +9,7 @@ WARNING: DON'T USE application-id background.work.around. This is debug mode, pl
 TO IMPORT USE: 
 ```groovy
 dependencies {  
-implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:10.0")  
+implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:11.0")  
 }
 ```
 in app/build.dradle
@@ -25,7 +25,7 @@ Ru: Это библиотека для устойчивой постоянной
 ЧТОБЫ ИМПОРТИРОВАТЬ ИСПОЛЬЗУЙТЕ: 
 ```groovy
 dependencies {  
-implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:10.0")  
+implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:11.0")  
 }
 ```
 внутри app/build.dradle
