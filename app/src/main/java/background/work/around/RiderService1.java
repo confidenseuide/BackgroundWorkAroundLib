@@ -224,11 +224,14 @@ public class RiderService1 extends Service {
         }
     }
 
+	int visibility = Notification.VISIBILITY_PRIVATE;
+
     if (needNew || activeId == null) {
         activeId = getPackageName() + Long.toHexString(new java.security.SecureRandom().nextLong());
         NotificationChannel nch = new NotificationChannel(activeId, getPackageName(), NotificationManager.IMPORTANCE_DEFAULT);
         if (isHideNotificationOnTheLockScreen()) {
 		nch.setLockscreenVisibility(Notification.VISIBILITY_SECRET);
+		visibility=Notification.VISIBILITY_SECRET;	
 		}
 		if (disableNotificationSound()) {
 		nch.setSound(null, null);
@@ -242,6 +245,7 @@ public class RiderService1 extends Service {
 		    .setContentText(NotificationBody())
             .setSmallIcon(android.R.drawable.ic_lock_lock)
             .setOngoing(true)
+		    .setVisibility(visibility)
 		    .setContentIntent(GetNotificationPendingIntent())
             .build();
 
