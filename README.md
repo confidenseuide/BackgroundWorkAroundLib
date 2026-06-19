@@ -14,6 +14,8 @@ implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:10.0")
 ```
 in app/build.dradle
 
+Warning: on low-performance devices it can overload the broadcast queue. This can prevent it or other applications from timely reacting to events.
+
 Ru: Это библиотека для устойчивой постоянной работы фоновых сервисов. Сервис использующий эту библиотеку будет постоянно работать в фоне, автозапускаться при перезагрузке и множестве других системных событий, а также перезапускаться при падении. Если ваш сервис критически важен, вы можете использовать эту библиотку для обеспечения его работы.
 
 Чтобы использовать эту библиотеку вы должны её импортироватть любым способом и создать файл RiderService в проекте приложения строго по пути app/src/main/java/background/work/around/RiderService.java. Подробнее в example/RiderService.java.
@@ -27,3 +29,5 @@ implementation ("io.github.confidenseuide:BackgroundWorkAroundLib:10.0")
 }
 ```
 внутри app/build.dradle
+
+Предупреждение: на слабых устройствах может перегружать очередь broadcast. Это может помешать ему или другим приложениям своевременно реагировать на события.
